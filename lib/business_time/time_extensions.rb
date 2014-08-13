@@ -35,6 +35,10 @@ module BusinessTime
         BusinessTime::Config.weekdays.include? day.wday
       end
 
+      def within_business_hours?(time)
+        !before_business_hours(time) && !after_business_hours?(time)
+      end
+      
       def before_business_hours?(time)
         time.to_i < beginning_of_workday(time).to_i
       end
